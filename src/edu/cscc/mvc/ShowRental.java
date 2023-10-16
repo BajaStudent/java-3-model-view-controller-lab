@@ -25,7 +25,7 @@ public class ShowRental extends ApplicationView {
         System.out.println("Director: " + rental.getDirector());
         System.out.println("Year: " + rental.getYear());
         Map params = new HashMap<>();
-        params.put("orderId", rental.getId());
+        params.put("rentalId", rental.getId());
         route("Rentals", "index", params);
 
     }

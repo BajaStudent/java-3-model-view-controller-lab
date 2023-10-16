@@ -4,7 +4,6 @@ import edu.cscc.mvc.framework.ApplicationView;
 import edu.cscc.mvc.framework.MVCContext;
 
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class RentalsIndex extends ApplicationView {

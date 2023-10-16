@@ -47,7 +47,7 @@ public class CreateRental extends ApplicationView {
             String rentalYear = scanner.nextLine();
             params.put("rentalYear", rentalYear);
 
-            route("Rentals", "save");
+            route("Rentals", "save",params);
         }catch (InputMismatchException e){
             route("Orders", "index");
         }
