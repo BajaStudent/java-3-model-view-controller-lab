@@ -17,8 +17,8 @@ public class RentalsIndex extends ApplicationView {
         System.out.println("Rental Management");
         System.out.println("1. List rentals.");
         System.out.println("2. Create a rental");
-        System.out.println("1. View a rental");
-        System.out.println("2. Main Menu");
+        System.out.println("3. View a rental");
+        System.out.println("4. Main Menu");
         Scanner scanner = new Scanner(System.in);
         try {
             int choice = scanner.nextInt();
