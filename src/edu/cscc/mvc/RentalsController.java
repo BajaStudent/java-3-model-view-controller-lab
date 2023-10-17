@@ -16,6 +16,10 @@ public class RentalsController extends ApplicationController {
         super(context);
         rentalRepository = RentalRepository.getInstance();
     }
+
+    public void create(){
+        render(new CreateRental(context, UUID.randomUUID()));
+    }
     public void list(){
         List<Rental> rentals = rentalRepository.readAll();
         render(new ListRentals(context, rentals));
@@ -45,16 +49,47 @@ public class RentalsController extends ApplicationController {
         Rental rental = new Rental();
 
         rental.setName((String) getRequest().getParams().get("rentalName"));
-        rental.setFormat((Format) getRequest().getParams().get("rentalFormat"));
-        rental.setGenre((Genre) getRequest().getParams().get("rentalGenre"));
+        rental.setFormat(getFormatFromString(getRequest().getParams().get("rentalFormat").toString()));
+        rental.setGenre( getGenreFromString(getRequest().getParams().get("rentalGenre").toString()));
         rental.setDirector((String) getRequest().getParams().get("rentalDirector"));
-        rental.setDirector((String) getRequest().getParams().get("rentalYear"));
+        rental.setYear((String) getRequest().getParams().get("rentalYear"));
         RentalRepository.getInstance().create(rental);
 
         Map params = new HashMap<>();
         params.put("rentalId", rental.getId());
 
-        context.route(new Request("Rentals", "index", params));
+       // render(new ShowRental(context, rental));
+        context.route(new Request("Rentals", "show", params));
+    }
+
+    private Genre getGenreFromString(String s){
+        switch(s){
+            case("1"):
+                return Genre.HORROR;
+            case("2"):
+                return Genre.ACTION;
+            case("3"):
+                return Genre.COMEDY;
+            case ("4"):
+                return Genre.DRAMA;
+            case("5"):
+                return Genre.ROMANCE;
+            default:
+                return null;
+        }
+    }
+
+    private Format getFormatFromString(String s){
+        switch(s){
+            case("1"):
+                return Format.DVD;
+            case("2"):
+                return Format.VHS;
+            case("3"):
+                return Format.BLU_RAY;
+            default:
+                return null;
+        }
     }
 }
 

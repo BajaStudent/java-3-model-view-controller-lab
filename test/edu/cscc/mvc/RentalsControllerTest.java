@@ -33,7 +33,7 @@ class RentalsControllerTest extends MVCTest{
     @Test
     public void itRendersRentalsIndex() {
         routeRequest("Rentals", "index");
-        assertViewRendered(SelectRental.class);
+        assertViewRendered(RentalsIndex.class);
     }
 
     @Test
