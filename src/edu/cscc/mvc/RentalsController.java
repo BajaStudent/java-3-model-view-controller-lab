@@ -28,14 +28,25 @@ public class RentalsController extends ApplicationController {
 
         render(new RentalsIndex(context));
     }
+
+    public void rmIndex(){
+        Rental rental = RentalRepository.getInstance().read(getRentalIdFromParams());
+        render(new ManageRentalIndex(context, rental));
+    }
     public void select() {
         render(new SelectRental(context));
     }
 
     public void show() {
         Rental rental = RentalRepository.getInstance().read(getRentalIdFromParams());
-        render(new ShowRental(context, rental));
+        render(new ShowRentalForList(context, rental));
     }
+
+    public void showRentalManagementIndex(){
+        Rental rental = RentalRepository.getInstance().read(getRentalIdFromParams());
+        render(new ShowRentalForManagement(context, rental));
+    }
+
 
     private UUID getRentalIdFromParams() {
         return UUID.fromString((String) getRequest().getParams().get("rentalId"));
@@ -58,8 +69,12 @@ public class RentalsController extends ApplicationController {
         Map params = new HashMap<>();
         params.put("rentalId", rental.getId());
 
-       // render(new ShowRental(context, rental));
-        context.route(new Request("Rentals", "show", params));
+        render(new ShowRentalForList(context, rental));
+        //context.route(new Request("Rentals", "show", params));
+    }
+
+    public void edit(){
+
     }
 
     private Genre getGenreFromString(String s){

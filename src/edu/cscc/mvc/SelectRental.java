@@ -29,6 +29,6 @@ public class SelectRental extends ApplicationView {
         String rentalId = scanner.nextLine();
         params.put("rentalId", rentalId);
 
-        route("Rentals", "show",params);
+        route("Rentals", "showRentalManagementIndex",params);
     }
 }

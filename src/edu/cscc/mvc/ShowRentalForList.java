@@ -1,16 +1,15 @@
 package edu.cscc.mvc;
 
 import edu.cscc.mvc.domain.Rental;
-import edu.cscc.mvc.framework.ApplicationController;
 import edu.cscc.mvc.framework.ApplicationView;
 import edu.cscc.mvc.framework.MVCContext;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShowRental extends ApplicationView {
+public class ShowRentalForList extends ApplicationView {
     private Rental rental;
-    public ShowRental(MVCContext context, Rental rental) {
+    public ShowRentalForList(MVCContext context, Rental rental) {
         super(context);
         this.rental = rental;
     }

@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class RentalsControllerTest extends MVCTest{
     private RentalRepository rentalRepository;
     private Rental rental;
@@ -61,6 +59,6 @@ class RentalsControllerTest extends MVCTest{
 
         routeRequest("Rentals", "show", params);
 
-        assertViewRendered(ShowRental.class);
+        assertViewRendered(ShowRentalForList.class);
     }
 }
