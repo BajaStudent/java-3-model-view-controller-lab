@@ -16,7 +16,7 @@ public class RentalsIndex extends ApplicationView {
         System.out.println("Rental Management");
         System.out.println("1. List rentals.");
         System.out.println("2. Create a rental");
-        System.out.println("3. Select a rental");
+        System.out.println("3. Manage a rental");
         System.out.println("4. Main Menu");
         Scanner scanner = new Scanner(System.in);
         try {
@@ -29,7 +29,7 @@ public class RentalsIndex extends ApplicationView {
                     route("Rentals", "create");
                     break;
                 case 3:
-                    route("Rentals", "select");
+                    route("ManageRental", "index");
                     break;
                 case 4:
                     route("Home", "index");

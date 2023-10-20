@@ -31,11 +31,22 @@ public class CreateRental extends ApplicationView {
             String rentalName = scanner.nextLine();
             params.put("rentalName", rentalName);
 
-            System.out.println("Format:\n" + "\t1. DVD\n" + "\t2. VHS\n" + "\t3. BLU_RAY\n" + "Choice: ");
+            System.out.println("Format: ");
+            System.out.println( "\t1. DVD" );
+            System.out.println("\t2. VHS");
+            System.out.println("\t3. BLU_RAY");
+            System.out.println("Choice: ");
             String rentalFormat = scanner.nextLine();
             params.put("rentalFormat", rentalFormat);
 
-            System.out.println("Genre:\n" + "\t1. HORROR\n" + "\t2. ACTION\n" + "\t3. COMEDY\n" + "\t4. DRAMA\n" + "\t5. ROMANCE\n" + "Choice: ");
+            System.out.println("Genre:");
+            System.out.println("\t1. HORROR");
+            System.out.println("\t2. ACTION");
+            System.out.println("\t2. ACTION");
+            System.out.println("\t3. COMEDY");
+            System.out.println("\t4. DRAMA");
+            System.out.println("\t5. ROMANCE");
+            System.out.println("Choice: ");
             String rentalGenre = scanner.nextLine();
             params.put("rentalGenre", rentalGenre);
 
@@ -49,7 +60,7 @@ public class CreateRental extends ApplicationView {
 
             route("Rentals", "save",params);
         }catch (InputMismatchException e){
-            route("Orders", "index");
+            route("Rentals", "index");
         }
     }
 }

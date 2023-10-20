@@ -1,22 +1,22 @@
 package edu.cscc.mvc;
 
+import edu.cscc.mvc.domain.Rental;
 import edu.cscc.mvc.framework.ApplicationView;
 import edu.cscc.mvc.framework.MVCContext;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
-public class SelectRental extends ApplicationView {
-
+public class SelectRentalForDelete extends ApplicationView {
+    private Rental rental;
     /**
      * Sets the context and configures it to exit by default
      * unless a route is specified.
      *
      * @param context The {@link MVCContext}.
      */
-    public SelectRental(MVCContext context) {
+    public SelectRentalForDelete(MVCContext context) {
         super(context);
     }
 
@@ -25,10 +25,9 @@ public class SelectRental extends ApplicationView {
         Map params = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Rental ID: ");
-
         String rentalId = scanner.nextLine();
         params.put("rentalId", rentalId);
 
-        route("Rentals", "showRentalManagementIndex",params);
+        route("ManageRental", "deleteRental",params);
     }
 }

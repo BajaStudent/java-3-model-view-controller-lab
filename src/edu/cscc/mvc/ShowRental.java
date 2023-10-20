@@ -7,9 +7,9 @@ import edu.cscc.mvc.framework.MVCContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShowRentalForList extends ApplicationView {
+public class ShowRental extends ApplicationView {
     private Rental rental;
-    public ShowRentalForList(MVCContext context, Rental rental) {
+    public ShowRental(MVCContext context, Rental rental) {
         super(context);
         this.rental = rental;
     }

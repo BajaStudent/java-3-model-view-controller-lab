@@ -4,24 +4,21 @@ import edu.cscc.mvc.domain.Rental;
 import edu.cscc.mvc.framework.ApplicationView;
 import edu.cscc.mvc.framework.MVCContext;
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ManageRentalIndex extends ApplicationView {
-    private Rental rental;
-    /**
-     * Sets the context and configures it to exit by default
-     * unless a route is specified.
-     *
-     * @param context The {@link MVCContext}.
-     */
-    public ManageRentalIndex(MVCContext context, Rental rental) {
+
+    public ManageRentalIndex(MVCContext context) {
         super(context);
-        this.rental = rental;
     }
 
     @Override
     public void show() {
+
+        System.out.println("************");
         System.out.println("Manage Rental");
         System.out.println("1. Update rental");
         System.out.println("2. Delete rental");
@@ -31,10 +28,10 @@ public class ManageRentalIndex extends ApplicationView {
             int choice = scanner.nextInt();
             switch(choice) {
                 case 1:
-                    route("Rentals", "edit");
+                    route("ManageRental", "selectRentalForUpdate" );
                     break;
                 case 2:
-                    route("Rentals", "delete");
+                    route("ManageRental", "delete");
                     break;
                 case 3:
                     route("Rentals", "index");

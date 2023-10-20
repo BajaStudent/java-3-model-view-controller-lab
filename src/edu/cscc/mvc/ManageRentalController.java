@@ -5,37 +5,44 @@ import edu.cscc.mvc.framework.ApplicationController;
 import edu.cscc.mvc.framework.MVCContext;
 import edu.cscc.mvc.framework.Request;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-public class RentalsController extends ApplicationController {
+public class ManageRentalController extends ApplicationController {
     private final RentalRepository rentalRepository;
-    public RentalsController(MVCContext context) {
+
+    public ManageRentalController(MVCContext context) {
         super(context);
-        rentalRepository = RentalRepository.getInstance();
+        this.rentalRepository = RentalRepository.getInstance();
+    }
+    public void index(){
+        render(new ManageRentalIndex(context));
+    }
+    public void selectRentalForUpdate() {
+        render(new SelectRentalForUpdate(context));
     }
 
-    public void create(){
-        render(new CreateRental(context, UUID.randomUUID()));
-    }
-    public void list(){
-        List<Rental> rentals = rentalRepository.readAll();
-        render(new ListRentals(context, rentals));
-    }
-    public void index() {
-
-        render(new RentalsIndex(context));
-    }
-
-
-    public void show() {
+    public void editRental(){
         Rental rental = RentalRepository.getInstance().read(getRentalIdFromParams());
+        render(new EditRental(context, rental));
+    }
+
+    public void deleteRental(){
+        Rental rental = RentalRepository.getInstance().read(getRentalIdFromParams());
+        render(new DeleteRental(context, rental));
+    }
+
+    public void save(){
+        Rental rental = new Rental();
+
+        rental.setId(UUID.fromString((String) getRequest().getParams().get("rentalID").toString()));
+        rental.setName((String) getRequest().getParams().get("rentalName"));
+        rental.setFormat(getFormatFromString(getRequest().getParams().get("rentalFormat").toString()));
+        rental.setGenre( getGenreFromString(getRequest().getParams().get("rentalGenre").toString()));
+        rental.setDirector((String) getRequest().getParams().get("rentalDirector"));
+        rental.setYear((String) getRequest().getParams().get("rentalYear"));
+        RentalRepository.getInstance().update(rental);
         render(new ShowRental(context, rental));
     }
-
-
 
 
     private UUID getRentalIdFromParams() {
@@ -44,22 +51,6 @@ public class RentalsController extends ApplicationController {
 
     private Request getRequest() {
         return context.getRequest();
-    }
-
-    public void save(){
-        Rental rental = new Rental();
-
-        rental.setName((String) getRequest().getParams().get("rentalName"));
-        rental.setFormat(getFormatFromString(getRequest().getParams().get("rentalFormat").toString()));
-        rental.setGenre( getGenreFromString(getRequest().getParams().get("rentalGenre").toString()));
-        rental.setDirector((String) getRequest().getParams().get("rentalDirector"));
-        rental.setYear((String) getRequest().getParams().get("rentalYear"));
-        RentalRepository.getInstance().create(rental);
-
-        Map params = new HashMap<>();
-        params.put("rentalId", rental.getId());
-
-        render(new ShowRental(context, rental));
     }
 
     private Genre getGenreFromString(String s){
@@ -92,4 +83,3 @@ public class RentalsController extends ApplicationController {
         }
     }
 }
-
