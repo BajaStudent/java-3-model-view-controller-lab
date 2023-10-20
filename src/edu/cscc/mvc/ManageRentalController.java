@@ -20,6 +20,9 @@ public class ManageRentalController extends ApplicationController {
     public void selectRentalForUpdate() {
         render(new SelectRentalForUpdate(context));
     }
+    public void selectRentalForDelete() {
+        render(new SelectRentalForDelete(context));
+    }
 
     public void editRental(){
         Rental rental = RentalRepository.getInstance().read(getRentalIdFromParams());

@@ -29,6 +29,11 @@ class RentalsControllerTest extends MVCTest{
     }
 
     @Test
+    public void itCanRouteToCreate() {
+        assertRouteExists("Rentals", "create", RentalsController.class);
+    }
+
+    @Test
     public void itRendersRentalsIndex() {
         routeRequest("Rentals", "index");
         assertViewRendered(RentalsIndex.class);
@@ -41,10 +46,10 @@ class RentalsControllerTest extends MVCTest{
 
 
     @Test
-    public void itRendersTheSelectRentalView() {
-        routeRequest("Rentals", "select");
+    public void itCanRouteToList() {
+        routeRequest("Rentals", "list");
 
-        assertViewRendered(SelectRentalForUpdate.class);
+        assertViewRendered(ListRentals.class);
     }
 
     @Test

@@ -31,7 +31,7 @@ public class ManageRentalIndex extends ApplicationView {
                     route("ManageRental", "selectRentalForUpdate" );
                     break;
                 case 2:
-                    route("ManageRental", "delete");
+                    route("ManageRental", "selectRentalForDelete");
                     break;
                 case 3:
                     route("Rentals", "index");
