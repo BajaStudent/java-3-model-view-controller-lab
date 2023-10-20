@@ -23,40 +23,51 @@ class RentalsControllerTest extends MVCTest{
         rentalRepository.create(rental);
     }
 
-    @Test
-    public void itCanRouteToRentalsIndex() {
-        assertRouteExists("Rentals", "index", RentalsController.class);
-    }
 
     @Test
     public void itCanRouteToCreate() {
         assertRouteExists("Rentals", "create", RentalsController.class);
     }
-
     @Test
-    public void itRendersRentalsIndex() {
-        routeRequest("Rentals", "index");
-        assertViewRendered(RentalsIndex.class);
+    public void itRendersTheCreateRentalsView() {
+        routeRequest("Rentals", "create");
+
+        assertViewRendered(CreateRental.class);
     }
-
-    @Test
-    public void itCanRouteToRentalsSelect() {
-        assertRouteExists("ManageRental", "index", ManageRentalController.class);
-    }
-
-
     @Test
     public void itCanRouteToList() {
         routeRequest("Rentals", "list");
 
         assertViewRendered(ListRentals.class);
     }
+    @Test
+    public void itRendersTheListView() {
+        routeRequest("Rentals", "list");
+
+        assertViewRendered(ListRentals.class);
+    }
+
+    @Test
+    public void itRendersTheShowRentalIndexView() {
+        routeRequest("Rentals", "create");
+
+        assertViewRendered(CreateRental.class);
+    }
+    @Test
+    public void itCanRouteToRentalsIndex() {
+        assertRouteExists("Rentals", "index", RentalsController.class);
+    }
+    @Test
+    public void itRendersTheRentalsIndexView() {
+        routeRequest("Rentals", "index");
+
+        assertViewRendered(RentalsIndex.class);
+    }
 
     @Test
     public void itCanRouteToRentalsShow() {
-        assertRouteExists("ManageRental", "show", ManageRentalController.class);
+        assertRouteExists("Rentals", "show", RentalsController.class);
     }
-
     @Test
     public void itRendersTheShowViewWithTheRentalModel() {
         Map<String, Object> params = new HashMap<>();
@@ -66,4 +77,19 @@ class RentalsControllerTest extends MVCTest{
 
         assertViewRendered(ShowRental.class);
     }
+
+    @Test
+    public void itCanRouteToSaveRental() {
+        assertRouteExists("Rentals", "save", RentalsController.class);
+    }
+    @Test
+    public void itRendersTheSaveRentalIndexView() {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("rentalId", rental.getId().toString());
+        routeRequest("Rentals", "show", params);
+
+        assertViewRendered(ShowRental.class);
+    }
+
 }
